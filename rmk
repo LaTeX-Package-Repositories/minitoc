@@ -1,0 +1,464 @@
+#! /bin/csh -f
+# repartition
+set w=`whoami`.rmk
+set OLD=/tmp/$w/OLD
+set WCL=/tmp/$w/CL
+echo 'Repartition of files into classes'
+foreach i ( 0 1 2 3 4 5 6 7 8 9 10 )
+  if ( -e ${WCL}$i ) then
+    \rm -rf ${WCL}$i
+  endif
+  if ( -d ${WCL}$i ) then
+    \rm -rf ${WCL}$i/*
+    rmdir ${WCL}$i
+  else
+    mkdir -m 755 -p ${WCL}$i
+  endif
+end
+# class 0
+echo 'Class 0'
+cp minitoc.dtx minitoc.ins minitoc-fr.dtx ${WCL}0
+# class 1
+echo 'Class 1'
+cp minitoc.sty mtcoff.sty mtcmess.sty mtcpatchmem.sty ${WCL}1
+cp *.mld *.mlo ${WCL}1
+# class 2
+echo 'Class 2'
+cp INSTALL minitoc.l README TODO ${WCL}2
+# class 3
+echo 'Class 3'
+cp mtc-add.bib ${WCL}3
+foreach i ( tex pdf )
+  foreach j ( \
+     mtc-2c mtc-2nd mtc-3co mtc-add mtc-ads mtc-amm mtc-apx mtc-art mtc-bk mtc-bo mtc-ch0 mtc-cri \
+     mtc-fko mtc-fo1 mtc-fo2 mtc-gap mtc-hi1 mtc-hi2 mtc-hia mtc-hir mtc-hop mtc-liv mtc-mem mtc-mm1 \
+     mtc-mu mtc-nom mtc-ocf mtc-ofs mtc-sbf mtc-scr mtc-syn mtc-tbi mtc-tlc mtc-tlo mtc-tsf mtc-vti \
+  )
+  cp $j.$i ${WCL}3
+end
+# class 4
+echo 'Class 4'
+cp minitoc.bug minitoc.sum ${WCL}4
+# class 5
+echo 'Class 5'
+cp minitoc.dtx minitoc.ins minitoc.bib minitoc.ist minitoc.lan en-mtc.bst ${WCL}5
+# class 6
+echo 'Class 6'
+cp aaland-f.png ${WCL}6
+cp acadian-m.pdf ${WCL}6
+cp acadie-f.png ${WCL}6
+cp acadien-m.pdf ${WCL}6
+cp afghan-f.png ${WCL}6
+cp africa-lf.png africa-lo.pdf ${WCL}6
+cp afrsud-l.pdf afrsud-p.pdf ${WCL}6
+cp albania.pdf ${WCL}6
+cp alb2.png ${WCL}6
+cp alba-eth.pdf ${WCL}6
+cp albania-f.png ${WCL}6
+cp algeria-f.png ${WCL}6
+cp allemand.jpg ${WCL}6
+cp alsace-f.png ${WCL}6
+cp andorra-f.png ${WCL}6
+cp argentina-f.png ${WCL}6
+cp anglo1.pdf ${WCL}6
+cp angola-f.png ${WCL}6
+cp arab-l.jpg ${WCL}6
+cp arabw.png ${WCL}6
+cp armenia-f.png ${WCL}6
+cp armeniad.pdf ${WCL}6
+cp armenian-l.png ${WCL}6
+cp armeniar.jpg ${WCL}6
+cp aruba-f.png ${WCL}6
+cp australia-f.png ${WCL}6
+cp austria-f.png ${WCL}6
+cp azerbaijan-f.png ${WCL}6
+cp bahamas-f.png ${WCL}6
+cp bahrain-f.png ${WCL}6
+cp baltes.jpg ${WCL}6
+cp bangla.png ${WCL}6
+cp bangla1.png ${WCL}6
+cp bangla2.png ${WCL}6
+cp bangladesh-f.png ${WCL}6
+cp barbados-f.png ${WCL}6
+cp basque-de.png ${WCL}6
+cp basque-df.png ${WCL}6
+cp basque1.pdf ${WCL}6
+cp basque2.pdf ${WCL}6
+cp be-dg-f.png ${WCL}6
+cp belarus-f.png ${WCL}6
+cp belgique.pdf belgium-f.png ${WCL}6
+cp belize-f.png ${WCL}6
+cp bengali-m.jpg ${WCL}6
+cp benin-f.png ${WCL}6
+cp bolivia-f.png ${WCL}6
+cp bolzano-f.png ${WCL}6
+cp bosnia.pdf bosnia-hz-f.png ${WCL}6
+cp bozen-f.png ${WCL}6
+cp brazil.pdf ${WCL}6
+cp brazil-f.png ${WCL}6
+cp brazilp.pdf ${WCL}6
+cp bretagne.pdf ${WCL}6
+cp brussels-f.png ${WCL}6
+cp bulgaria-f.png ${WCL}6
+cp bur-f.png ${WCL}6
+cp burkina-f.png ${WCL}6
+cp burundi-f.png ${WCL}6
+cp bulgariar.jpg bulgarski.png bulgmap.png ${WCL}6
+cp buryatia.pdf buryatia-l.pdf ${WCL}6
+cp california-f.png ${WCL}6
+cp cambodia-f.png ${WCL}6
+cp cameroon-f.png ${WCL}6
+cp canada.pdf ${WCL}6
+cp canada-f.png ${WCL}6
+cp canada-l.pdf ${WCL}6
+cp canada-pe.png ${WCL}6
+cp canada-pf.pdf ${WCL}6
+cp canada1.pdf ${WCL}6
+cp cap-verde-f.png ${WCL}6
+cp castille-f.png ${WCL}6
+cp catalan-d.pdf catalan-p.pdf catalonia-f.png ${WCL}6
+cp caucasus.pdf ${WCL}6
+cp central-africa-f.png ${WCL}6
+cp chad-f.png ${WCL}6
+cp chile-f.png ${WCL}6
+cp china-ae.png china-af.png china-ch.png china-f.png china-l.pdf ${WCL}6
+cp china-w.png ${WCL}6
+cp chine1.pdf ${WCL}6
+cp chine2.pdf ${WCL}6
+cp cis-f.png ${WCL}6
+cp colombia-f.png ${WCL}6
+cp comoros-f.png ${WCL}6
+cp congo-f.png ${WCL}6
+cp corsica-f.jpg ${WCL}6
+cp costa-rica-f.jpg ${WCL}6
+cp cplp-0.png cplpmap.png ${WCL}6
+cp croatia-f.png ${WCL}6
+cp croatia-un.png ${WCL}6
+cp croatie2.png ${WCL}6
+cp cuba-f.png ${WCL}6
+cp cyprus-f.png ${WCL}6
+cp cyr-alf.png ${WCL}6
+cp cz1.pdf ${WCL}6
+cp cz3.png ${WCL}6
+cp czech-f.png ${WCL}6
+cp czechd.pdf ${WCL}6
+cp dane-f.png ${WCL}6
+cp danemark.jpg ${WCL}6
+cp danishd.pdf ${WCL}6
+cp danishg.pdf ${WCL}6
+cp devanagari.png ${WCL}6
+cp djibouti-f.png ${WCL}6
+cp dominica-f.png ${WCL}6
+cp dominican-f.png ${WCL}6
+cp dutchw.pdf ${WCL}6
+cp east-timor-f.png ${WCL}6
+cp ecosse1.pdf ${WCL}6
+cp ecosse2.pdf ${WCL}6
+cp ecosse3.pdf ${WCL}6
+cp ecuador-f.jpg ${WCL}6
+cp egypt-f.png ${WCL}6
+cp el-salvador-f.png ${WCL}6
+cp england-f.jpg ${WCL}6
+cp equa-guinea-f.png ${WCL}6
+cp eritrea-f.png ${WCL}6
+cp espa-l.pdf ${WCL}6
+cp espa-o.png ${WCL}6
+cp esperanto-f.png ${WCL}6
+cp estonia-a.pdf ${WCL}6
+cp estonia-b.pdf ${WCL}6
+cp estonia-f.png ${WCL}6
+cp eth2.png ${WCL}6
+cp ethiolang.png ${WCL}6
+cp ethiopia.pdf ethiopia-f.png ethiopia-p.pdf ${WCL}6
+cp euro-lan.png ${WCL}6
+cp euro-lan1.png ${WCL}6
+cp euro-lan2.png ${WCL}6
+cp eusk-f.png ${WCL}6
+cp euskara.png ${WCL}6
+cp faroe-f.png ${WCL}6
+cp farsi.pdf ${WCL}6
+cp farsi-logo.png ${WCL}6
+cp feroe.jpg ${WCL}6
+cp fiji-f.png ${WCL}6
+cp finland-f.png ${WCL}6
+cp finlande1.png ${WCL}6
+cp finlande2.pdf ${WCL}6
+cp finnishd.pdf ${WCL}6
+cp finnishl.pdf ${WCL}6
+cp flanders-f.png ${WCL}6
+cp france-f.png ${WCL}6
+cp france-lr.png ${WCL}6
+cp franco.png francophonie-f.png ${WCL}6
+cp gabon-f.png ${WCL}6
+cp gael-ft.pdf gaid.jpg ${WCL}6
+cp galicia-f.png galicia-m.pdf galicia-mp.pdf galician-l.png ${WCL}6
+cp galles1.pdf galles2.pdf ${WCL}6
+cp georgia-f.png ${WCL}6
+cp germ-w.png ${WCL}6
+cp german-c.pdf german-d.pdf german-m.pdf germany-f.jpg ${WCL}6
+cp ghana-f.png ${WCL}6
+cp gibraltar-f.png ${WCL}6
+cp grece1.pdf ${WCL}6
+cp grece2.pdf ${WCL}6
+cp greece-f.png ${WCL}6
+cp greeka.png ${WCL}6
+cp greekm.jpg ${WCL}6
+cp greenland-f.png ${WCL}6
+cp guatemala-f.jpg ${WCL}6
+cp guinea-bissau-f.png ${WCL}6
+cp guinea-f.png ${WCL}6
+cp gwenn-f.png ${WCL}6
+cp haiti-f.jpg ${WCL}6
+cp hangul.png ${WCL}6
+cp hanja.png ${WCL}6
+cp hanzi.png ${WCL}6
+cp hin.png ${WCL}6
+cp hindi-b.png ${WCL}6
+cp hindi-p.png ${WCL}6
+cp hispano.png ${WCL}6
+cp honduras-f.png ${WCL}6
+cp hrv.png ${WCL}6
+cp hun1.png ${WCL}6
+cp hun2.jpg ${WCL}6
+cp hungary-f.png ${WCL}6
+cp iceland-f.png ${WCL}6
+cp imongolia-f.png ${WCL}6
+cp inde1.pdf ${WCL}6
+cp inde2.jpg ${WCL}6
+cp india-f.png ${WCL}6
+cp indonesia-f.png ${WCL}6
+cp indonesia1.pdf ${WCL}6
+cp indonesia2.pdf ${WCL}6
+cp iran-f.png ${WCL}6
+cp iranian.jpg ${WCL}6
+cp iraq-f.png ${WCL}6
+cp ireland-f.png ${WCL}6
+cp irish.png ${WCL}6
+cp irlande.pdf ${WCL}6
+cp islam-pbc.png islam-sw.pdf ${WCL}6
+cp islande.png ${WCL}6
+cp islandep.jpg ${WCL}6
+cp isr1.pdf ${WCL}6
+cp israel-f.png ${WCL}6
+cp italian.pdf ${WCL}6
+cp italy-f.png ${WCL}6
+cp italo1.png ${WCL}6
+cp italysm.png ${WCL}6
+cp ivory-f.png ${WCL}6
+cp ivrit.png ${WCL}6
+cp jamaica-f.png ${WCL}6
+cp japan-f.png ${WCL}6
+cp japon1.pdf ${WCL}6
+cp japon2.jpg ${WCL}6
+cp jordan-f.png ${WCL}6
+cp jutland-f.png ${WCL}6
+cp kannada-n.png ${WCL}6
+cp karnad1.jpg ${WCL}6
+cp karnataka.jpg karnataka-f.jpg ${WCL}6
+cp kazakhstan-f.png ${WCL}6
+cp kenya-f.png ${WCL}6
+cp kerala.jpg kerala-f.jpg ${WCL}6
+cp khalkha.pdf ${WCL}6
+cp kiribati-f.png ${WCL}6
+cp korea-n-f.png ${WCL}6
+cp korea-s-f.png ${WCL}6
+cp korean1.png ${WCL}6
+cp korean2.jpg ${WCL}6
+cp kos-alb.png ${WCL}6
+cp kos-ml.png ${WCL}6
+cp kosovo-f.png ${WCL}6
+cp kuwait-f.png ${WCL}6
+cp kyrgyzstan-f.png ${WCL}6
+cp lamed3.png ${WCL}6
+cp lang-g.png ${WCL}6
+cp laos-f.png ${WCL}6
+cp latvia-f.png latvian-d.png latvian-r1.png ${WCL}6
+cp lebanon-f.png ${WCL}6
+cp lettonie.jpg ${WCL}6
+cp leur.png ${WCL}6
+cp liberia-f.png ${WCL}6
+cp libya-f.jpg ${WCL}6
+cp liech-f.png ${WCL}6
+cp lithuania-f.jpg lituanie.png ${WCL}6
+cp lorraine-f.jpg ${WCL}6
+cp louisiana-f.png ${WCL}6
+cp ls-f.png ${WCL}6
+cp luso1.pdf luso2.pdf ${WCL}6
+cp lux-f.png ${WCL}6
+cp macau-f.png ${WCL}6
+cp macedonia-f.png ${WCL}6
+cp madagascar-f.png ${WCL}6
+cp maine-f.jpg ${WCL}6
+cp malawi-f.png ${WCL}6
+cp malayalam.pdf ${WCL}6
+cp malayalam.png ${WCL}6
+cp malaysia-f.png ${WCL}6
+cp malaysia1.pdf ${WCL}6
+cp malaysia1.pdf ${WCL}6
+cp malaysia2.pdf ${WCL}6
+cp mali-f.png ${WCL}6
+cp malta1-f.png ${WCL}6
+cp manchu.jpg ${WCL}6
+cp manchuria.jpg ${WCL}6
+cp manjuc.jpg ${WCL}6
+cp manjui.png ${WCL}6
+cp mauritania-f.png ${WCL}6
+cp mauritius-f.png ${WCL}6
+cp mex1.pdf ${WCL}6
+cp mex2.pdf ${WCL}6
+cp mex3.pdf ${WCL}6
+cp mexico-f.jpg ${WCL}6
+cp mexip.pdf ${WCL}6
+cp meyalu.png ${WCL}6
+cp moldova-f.png ${WCL}6
+cp monaco-f.png ${WCL}6
+cp mondep.png ${WCL}6
+cp mongasie.pdf ${WCL}6
+cp mongolcy.png ${WCL}6
+cp mongolia-f.png mongolian.pdf ${WCL}6
+cp mongols.png ${WCL}6
+cp mongoltr.png ${WCL}6
+cp montenegro-f.jpg ${WCL}6
+cp morocco-f.png ${WCL}6
+cp mozambique-f.png ${WCL}6
+cp namibia-f.png ${WCL}6
+cp nbrunswick-f.png ${WCL}6
+cp ncyprus-f.png ${WCL}6
+cp neder.pdf netherlands-antilles-f.png netherlands-f.png ${WCL}6
+cp new-york-f.png ${WCL}6
+cp newzealand-f.png ${WCL}6
+cp nicaragua-f.png ${WCL}6
+cp nice-f.png ${WCL}6
+cp niger-f.png ${WCL}6
+cp nigeria-f.png ${WCL}6
+cp nihongo.png ${WCL}6
+cp norvege-c.pdf norvege-t.pdf norway-f.png norway-p.pdf ${WCL}6
+cp occ-f.png occdial1.jpg occdial2.png occitanie.png occtaur.jpg ${WCL}6
+cp oman-f.png ${WCL}6
+cp opole-f.png ${WCL}6
+cp pakistan-f.png ${WCL}6
+cp palestine-f.png ${WCL}6
+cp panama-f.png ${WCL}6
+cp paraguay.png paraguay-f.png paraguayp.pdf ${WCL}6
+cp peru-f.png ${WCL}6
+cp philippines-f.png ${WCL}6
+cp poland-f.png polish-d.jpg ${WCL}6
+cp polmin.jpg ${WCL}6
+cp pologne.pdf polski-f.png ${WCL}6
+cp portu-a.png ${WCL}6
+cp portu-b.png ${WCL}6
+cp portu-p.jpg ${WCL}6
+cp portu-r.jpg ${WCL}6
+cp portugal.pdf portugal-f.png ${WCL}6
+cp puerto-rico-f.png ${WCL}6
+cp qatar-f.png ${WCL}6
+cp quebec-f.png ${WCL}6
+cp rdcongo-f.png ${WCL}6
+cp romania-f.png romanian.pdf ${WCL}6
+cp rus-cyr.png ${WCL}6
+cp rus-re.png ${WCL}6
+cp rus-su.pdf ${WCL}6
+cp russia-f.png russian.png ${WCL}6
+cp russian-e.pdf ${WCL}6
+cp russian-n.png ${WCL}6
+cp russian-w.png ${WCL}6
+cp rwanda-f.png ${WCL}6
+cp saint-lucia-f.png ${WCL}6
+cp same.png ${WCL}6
+cp same-f.png sami-f.png ${WCL}6
+cp samoa-f.png ${WCL}6
+cp san-marino-f.png ${WCL}6
+cp sao-f.png ${WCL}6
+cp saudi-arabia-f.png ${WCL}6
+cp scotland-f.png ${WCL}6
+cp senegal-f.png ${WCL}6
+cp serb-a.pdf serbia-f.png serbia-f2.png ${WCL}6
+cp serbia1.pdf ${WCL}6
+cp seychelles-f.png ${WCL}6
+cp singapore-f.png ${WCL}6
+cp slovak-ok.png ${WCL}6
+cp slovakia.pdf slovakia-f.png ${WCL}6
+cp slovenia-f.png slovenian.png slovenie.pdf ${WCL}6
+cp solomon-islands-f.png ${WCL}6
+cp somalia-f.png ${WCL}6
+cp sorabe-1.jpg ${WCL}6
+cp sorabe-2.jpg ${WCL}6
+cp sorben.jpg ${WCL}6
+cp sorbian.jpg ${WCL}6
+cp south-africa-f.png ${WCL}6
+cp spain.png spain-f.png ${WCL}6
+cp spilhennig.png ${WCL}6
+cp start.jpg ${WCL}6
+cp stop.png ${WCL}6
+cp sudan-f.png ${WCL}6
+cp suede-a.pdf ${WCL}6
+cp suede-fin.pdf ${WCL}6
+cp suisse-f.png ${WCL}6
+cp suriname-f.png ${WCL}6
+cp svenska.png ${WCL}6
+cp swahili.pdf ${WCL}6
+cp swahili-m.png ${WCL}6
+cp fswahili.pdf ${WCL}6
+cp sweden.pdf sweden-f.png ${WCL}6
+cp syria-f.png ${WCL}6
+cp taiwan-f.png ${WCL}6
+cp tajikistan-f.png ${WCL}6
+cp tanzania-f.png ${WCL}6
+cp thai.pdf ${WCL}6
+cp thai.png thailand-f.png ${WCL}6
+cp togo-f.png ${WCL}6
+cp tonga-f.png ${WCL}6
+cp tunisia-f.png ${WCL}6
+cp turkey-f.png turkish.png turquie.pdf ${WCL}6
+cp turkmenistan-f.png ${WCL}6
+cp tuvalu-f.png ${WCL}6
+cp uae-f.png ${WCL}6
+cp uganda-f.png ${WCL}6
+cp uighur-f.png uighur.pdf ${WCL}6
+cp uk-f.png ${WCL}6
+cp ukra.png ${WCL}6
+cp ukraine.jpg ukraine-f.png ${WCL}6
+cp ukrainep.pdf ${WCL}6
+cp uruguay-f.png ${WCL}6
+cp us-f.png ${WCL}6
+cp usa-f.png ${WCL}6
+cp uzbekistan-f.png ${WCL}6
+cp vanuatu-f.png ${WCL}6
+cp vatican-f.jpg ${WCL}6
+cp venezuela-f.png ${WCL}6
+cp vermont-f.png ${WCL}6
+cp viet2.pdf ${WCL}6
+cp viet3.pdf ${WCL}6
+cp viet4.pdf ${WCL}6
+cp viet-w.pdf vietnam-f.png ${WCL}6
+cp vojvodina-f.png ${WCL}6
+cp wales-f.png ${WCL}6
+cp wallonia-f.png ${WCL}6
+cp wallonie.pdf ${WCL}6
+cp wiki.png wikif.png ${WCL}6
+cp wrs-a.png wrs-c.png ${WCL}6
+cp xinjiang.png xinjiangc.png ${WCL}6
+cp xyugo.png ${WCL}6
+cp yemen-f.png ${WCL}6
+cp zambia-f.png ${WCL}6
+cp zanzibar-f.png ${WCL}6
+cp zimbabwe-f.png ${WCL}6
+# class 7
+echo 'Class 7'
+cp minitoc.dtx minitoc-fr.dtx minitoc-fr.bib minitoc-fr.ist minitoc-fr.lan minitoc.pre ${WCL}7
+cp franc.sty frbib.sty frnew.sty fr-mtc.bst ${WCL}7
+# class 8
+echo 'Class 8'
+cp minitoc.pdf ${WCL}7
+# cp minitoc.ps ${WCL}8
+# class 9
+echo 'Class 9'
+cp minitoc-fr.pdf ${WCL}9
+# cp minitoc-fr.ps ${WCL}9
+# class 10
+echo 'Class 10'
+cp pmk imk emk fmk rmk tmk xmk cmk ${WCL}10
+# it's all!
+echo "Repartition done"
+exit
+

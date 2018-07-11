@@ -1,0 +1,631 @@
+%%%%%%%%%%%%%%%%%% minitoc.bug v61 2015/07/13
+This is a list of problems and frequently asked questions about
+minitoc.sty. If your version is < v61, please upgrade.
+
+First: this package is looking for a maintainer.
+
+If a problem arises, it is often wise to: a) use the hints option,
+and b) read the DOCUMENT.log file, which may contain pertinent
+messages. If you do not find a solution, ask a question on an adequate
+news group (fr.comp.text.tex or comp.text.tex preferably, which I try
+to follow), or send me a mail in last ressort (please join a minimal
+but complete example reproducing the problem).
+
+(1)  Avoiding a page break near the rules before and after
+     the mini-table.
+     > This problem seemed solved since version #8,
+     > but version #12 adds better fixes.
+     > You may have to make some final tuning with
+     > \enlargethispage. See the LaTeX manual (Lamport 1994).
+
+(2)  Implementing others layouts for the minitoc.
+     > Suggestions are welcome. See the \mtcsetformat command.
+
+(3)  \\ in a contents line makes an error.
+     > Use \protect\linebreak
+
+(4)  If you reorder chapters, havoc follows... minitocs going in wrong
+     chapters.
+     > the best way seems to make one run with the mtcoff
+     > package in place of the minitoc package, then restore
+     > the minitoc package and re-execute LaTeX three times
+     > (yes, it is time consuming...). The mtcoff package
+     > cleans the auxiliary files from spurious commands
+     > added by minitoc.
+     > A more radical solution is to delete the files .aux,
+     > .lof and .lot relative to the document, then re-execute
+     > LaTeX three times.
+
+(5)  Extensions for the names of auxiliary files
+     > If you have an operating system which tolerates only
+     > short file name extensions (of 3 characters, like MS-DOS),
+     > No modification is needed: all is automatic!
+     > From version #28, the extensions are auto-configured.
+     > If you insist to use 3 characters extensions, even on
+     > operating systems allowing more, just use the package
+     > option `shortext'. Then you will get first the
+     > auto-configuration messages, then a message saying that
+     > you will use short extensions.
+
+(6) Playing with the chapter number.
+     > Do not cheat with the ``chapter'' counter, i.e. do not write
+     > ugly things like
+     >     \setcounter{chapter}{6}.
+     > The mechanism would break. It is better to add \chapter commands,
+     > to create empty (but numbered in a legal way) chapters.
+     > Since version #10, minitoc.sty works with appendices.
+     > Version #19 allows to begin with a chapter other that
+     > number 1. And look at the section ``Special Entries for
+     > TOC, LOF, LOT, Bibliography and Index''.
+
+(7) Supported document classes.
+     > The minitoc package is restricted to document classes which
+     > define chapters in the standard way, like ``book'' and ``report'',
+     > or sections in the standard way, like ``article''.
+     > There are ``parttocs'' if the document class defines
+     > the \part command.
+
+(8) Compatibility with LaTeX versions.
+     > Some users have failed to make minitoc to work. They got
+     > a message like:
+     >   Undefined command ... \@inputcheck ...
+     >   Your version of latex.tex is obsolete.
+     >   Trying to continue..
+     > or:
+     >   Undefined command ... \reset@font ...
+     >   Your version of latex.tex is very obsolete.
+     >   Trying to continue... crossing fingers.
+     > The \reset@font command has been added to latex.tex
+     > on 29 September 1991 and the \@inputcheck command
+     > on 18 March 1992 and this version of latex.tex has been
+     > released on 25 March 1992. If you have this message, you
+     > have an old version of latex.tex. Get a recent one from
+     > the archives and regenerate a latex format via initex.
+
+(9) Other mini-tables
+     > Some demanding users want to have minilof, minilot and
+     > minibbl. First, minibbl is an other problem, strongly
+     > related to the BibTeX's dealing with .aux files. Look
+     > at the chapterbib, bibunits, multibib, and bibtopic packages
+     > (and others, perhaps).
+     > To make `minilof' (minilot is the same problem), we could apply
+     > the same method as for minitoc, but we need to add marks
+     > in the .lof (or .lot) file. It should be possible to do from
+     > minitoc.sty, but long to test. Version #13 implements basic
+     > minilofs and minilots. Minibbls are not the aim of this package
+     > file.
+
+(10) Why so many auxiliary files?
+     > This package creates a lot of auxiliary files and some users
+     > have argued that it is too many. A deep redesign would be
+     > necessary to avoid that. Using only one big auxiliary file
+     > (or one for all minitocs, one for all minilofs, ...)
+     > would make the reading of such file very slow, and it must
+     > be read for each \minixxx macro!
+     > Moreover, this would make the checkfiles option impractical
+     > to implement.
+     > Note that the many files *.mtc*, etc., may be
+     > deleted after the LaTeX run. They are rebuilt by the
+     > \dominitoc command (and siblings).
+     > Moreover, since version #35, empty minitocs (and co.) can
+     > be automatically detected and skipped. It would not be
+     > easy to do with one big auxiliary file.
+     > Since version #44, the listfiles package option is available
+     > to create a list of these auxiliary files.
+     > But, since version #38, minitoc is able to detect and
+     > skip empty minitoc files (and co.) to avoid ugly titles
+     > with just two thin rules.
+     >
+     > These files contain the mini-tables extracted from the .toc,
+     > .lof, and .lot files. They are no more useful after the LaTeX
+     > run. If you run LaTeX via a script or a ``makefile'', it may
+     > be useful to add to it a cleaning feature (which should be
+     > optional, to allow debugging). These files are named
+     >       <document>.[p|m|s][tc|lf|lt]<N>      (long suffixes)
+     > or
+     >       <document>.[P|M|S|G|F|H|U|T|V]<N>   (short suffixes)
+     > where <N> is a number. Note that a <document}.mtc auxiliary
+     > file is also created as a scratch file).
+     >
+     > As an example, you can look at the rubber script (written
+     > in Python) by Emmanuel Beffara} (http://rubber.sourceforge.net/
+     > or http://www.pps.jussieu.fr/~beffara/soft/rubber/ to find
+     > rubber).
+
+(11) Minitocs (minilofs and minilots) at levels other
+     than chapter.
+     > Here also, some redesign was needed. From version #15,
+     > here are parttocs, partlofs and partlots for the part
+     > level in book- or report-like documents, secttocs, sectlofs
+     > and sectlots for the section level in article-like documents.
+
+(12) Compatibily with LaTeX2.09.
+     > The more recent version of latex-2e adds a \protect
+     > command before \contentsline in the .toc, .lof and .lof
+     > files. Minitoc version #17 attempts to be compatible
+     > with latex-2e and latex-2.09. This will be the LAST
+     > version usable with latex-2.09. Versions #18 and later are
+     > latex-2e specific, and no more compatible with LaTeX2.09,
+     > which is obsolete.
+
+(13) Documents resetting the chapter number at each part.
+     > From version #23, works with document classes resetting
+     > chapter (or section) number at each part.
+
+(14) The minitocs have too much spaced lines.
+     > From version #29, you can have tight minitocs with the
+     > tight option, and with the k-tight option for the Koma-script
+     > classes (since version #43).
+
+(15) The secttocs are wrong.
+     > Secttocs did not work: corrected (#38).
+
+(16) Removing the lines of dots between section titles and page numbers.
+     > The lines of dots (leaders) are removed by the undotted option (#29).
+
+(17) Using the hyperref package with minitoc.
+     > Since version #31, works with the hyperref package,
+     > thanks to Heiko Oberdiek (oberdiek@ruf.uni-freiburg.de).
+     > If one add the loading of the hyperref package to a document
+     > yet using minitoc, you will get error message about spurious
+     > closing braces. Just let finish the LaTeX run, then re-LaTeX
+     > the document. There will be no problem if you remove the
+     > loading of hyperref and add it again: the problem occurs
+     > only when upgrading from  minitoc #30 to minitoc #31
+     > (or higher) with a document already processed and adding
+     > hyperref at the same time! It seems better to process the
+     > document with minitoc #31 (or higher) without hyperref, then
+     > with hyperref, because some internal commands written
+     > into the auxiliary files have been modified. If used, the
+     > hyperref package must be loaded BEFORE minitoc. Note that
+     > minitoc.tex shows an example of the use of the hyperref
+     > package with minitoc.
+
+(18) {Problem while upgrading minitoc.
+     > If upgrading from version #30 or lower to version #31 or higher,
+     > you should delete the .aux, .toc, .lof, .lot of the document,
+     > else the first LaTeX run with version #31 or higher will
+     > produce a lot of errors (the next run should be ok).
+
+(19) A local table of contents for the set of appendices.
+     > Some users need a table of contents for the appendices,
+     > but without putting the entries of it into the main table of
+     > contents. The solution is to put the appendices in
+     > a \part subdivision of the document and ask for a table
+     > of contents at the \part level:
+     >
+     >    \doparttoc           % after \begin{document}
+     >    . . .
+     >    \appendix
+     >    \part{Appendices}    % create a part level subdivision
+     >    \parttoc             % create a local table of contents
+     > To suppress the appendix part in the main toc
+     >    \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+     >    \chapter{First appendix}
+     >    . . .
+     > Add this at the end of appendices if there is something
+     > after the appendices (like an index or a bibliography)
+     > to put a bound to the contents of \parttoc:
+     >    \addtocontents{toc}{\protect\partbegin}
+     > See also (25).
+
+(20) Use with the appendix package.
+     > If you use the appendix package (by Peter R.~Wilson,
+     > herries.press@earthlink.net), you will observe a serious
+     > problem with minitocs in the appendices environment (and
+     > after it): they do not match with their appendix. In fact,
+     > the environnement opening \begin{appendices} hides a
+     > \addcontentsline command for a chapter or a section, putting
+     > trouble in the numbering of minitocs or secttocs. Several
+     > solutions are available. The first one is to add a \adjustmtc
+     > or \adjuststc command (depending if the appendices are at the
+     > chapter or section level) after EACH \begin{appendices} command.
+     > An other solution is to add the following commands in the
+     > preamble after the loading of the appendix package:
+     > \usepackage[...]{appendix} command:
+     >              \let\oldappendices\appendices
+     >              \def\appendices{\oldappendices\adjustmtc}
+     > if appendices are at the chapter level, OR:
+     >              \let\oldappendices\appendices
+     >              \def\appendices{\oldappendices\adjuststc}
+     > if appendices are at the section level.
+     >
+     > These two solutions may be modified by replacing
+     > \adjustmtc by the sequence:
+     >              \addtocontents{toc}{\chapterend}
+     >     OR
+     >              \addtocontents{toc}{\sectend}
+     >  when it is necessary to delimit the end of the preceeding
+     > chapter or section.
+     >
+     > A rather elegant solution is to add an entry into the TOC via
+     > the \addappheadtotoc offered by the appendix package. As this
+     > entry is a chapter-level (or section-level) entry, it delimits
+     > correctly the end  of the preceeding chapter or section.
+
+(21) Use with the tocloft package.
+     > The tocloft and minitoc packages have an unfortunate interaction,
+     > discovered by Lyndon Dudding (lyndon.dudding@totalise.co.uk)
+     > which fortunately can be fixed. In the normal course of events,
+     > minitoc is used in a chaptered document it will typeset section
+     > entries in the minitocs in bold font. If tocloft is used in
+     > conjunction with minitoc, then the minitoc section entries are
+     > typeset in the normal font, except for the page numbers which are
+     > in bold font, while the ToC section entries are all in normal font.
+     >
+     > One cure, if you want the minitoc section entries to be all in
+     > normal font is to put:
+     >      \renewcommand{\mtcSfont}{\small\normalfont}
+     > in the preamble.
+     >
+     > Otherwise, the cure is the following incantation:
+     >      \renewcommand{\cftsecfont}{\bfseries}
+     >      \renewcommand{\cftsecleader}{\bfseries\cftdotfill{\cftdotsep}}
+     >      \renewcommand{\cftsecpagefont}{\bfseries}
+     > To have the section entries in both the ToC and the minitocs
+     > in bold then put the incantation in the preamble. To have only the
+     > minitoc section entries in bold while the ToC entries are in the
+     > normal font, put the incantation between the \tableofcontents
+     > command and the first \chapter command.
+
+
+(22) Use with the memoir class.
+     > The memoir class offers the functionnalities of the tocbibind, appendix,
+     > and tocloft packages, hence it has the same problems; see above the
+     > available solutions (points 5, 20, and 21, respectively).
+     > If your version of the memoir class is recent, the syntax of the
+     > \chapter command is different and the memoir class COULD BE NO MORE
+     > COMPATIBLE with the minitoc package, but a patch is inserted to fix
+     > the problem. Hopefully, if your version of the memoir is more recent
+     > than 2005/09/25, the patch is no more necessary.
+     >
+     > If you are using the memoir class (or the tocloft package), the
+     > \mtcsetfont command has no effect (\mtcsettitlefont works); you should
+     > use the font commands which are specific of the memoir class (or of the
+     > \texttt{tocloft} package).
+     >
+     > If you still want to use the \mtcsetfont commands while using the
+     > memoir class (or of the tocloft package), you must disable the
+     > memoir/tocloft font commands. This is done by the following commands:
+     >     \let\cftpartfont\relax
+     >     \let\cftchapterfont\relax
+     >     \let\cftsectionfont\relax
+     >     \let\cftsubsectionfont\relax
+     >     \let\cftsubsubsectionfont\relax
+     >     \let\cftparagraphfont\relax
+     >     \let\cftsubparagraphfont\relax
+     >     \let\cftfigurefont\relax
+     >     \let\cftsubfigurefont\relax
+     >     \let\cfttablefont\relax
+     >     \let\cftsubtablefont\relax
+
+(23) There are too many commands for fonts.
+     > Since version #41, the commands \mtcsetfont and \mtcsettitlefont are
+     > available. You do not need anymore to know \mtcSSSfont, \ptifont, etc.
+     >
+     > Since version \#42, the \mtcsettitle command is
+     > available. You do not need anymore to know \mtctitle, \slttitle, etc.
+
+(24) Compatibility with the AmS document classes.
+     > The amsart.cls and amsproc.cls document classes are incompatible
+     > with minitoc. The amsbook.cls document class requires the
+     > insertion of commands if you want a list of figures and/or a
+     > list of tables:
+     > \listoffigures
+     > \mtcaddchapter % added
+     > \listoftables
+     > \mtcaddchapter % added
+
+(25) Hiding entries from the main table of contents.
+     > It is a problem similar to that of section~19.
+     > An example is having a local table of contents for a chapter
+     > (\minitoc) whose entries should not appear in the main table
+     > of contents. Just use the ``mtchideinmaintoc'' environment:
+     >
+     >   \chapter{Title}
+     >   \begin{mtchideinmaintoc}
+     >   \minitoc
+     >   \section{sub-title}
+     >   ...
+     >   \end{mtchideinmaintoc}
+     >
+     > This environment accepts an optional numeric argument, which is the
+     > depth of hiding in the main toc (default: -1, complete hiding).
+     > Look at the mtc-apx.tex example file.
+     >
+     > Of course, the environments ``mtchideinmainlof'' and
+     > ``mtchideinmainlot'' are also available.
+     >
+     > Note that the position of the end of these environments must be
+     > adjusted to include a page break (like the one done by a \chapter
+     > command), else the restore command might be inserted to early
+     > into the .toc, .lof or .lot file. More details are given in the
+     > documentation. Look att the mtc-hi1.tex and mtc-hi2.tex example files
+     > (the second gives better results).
+
+(26) Defining your own .mld file.
+     > First, you should not directly modify one of the distributed .mld files.
+     > The simplest way to alter some title is to redefine the corresponding
+     > command via \renewcommand or better via \mtcsettitle. If you really
+     > want to have your own .mld file, you copy an existing .mld file into
+     > one with a new name (not the name of a distributed .mld file). Then you
+     > modify this new .mld file and you can use it via \mtcselectlanguage.
+     > It is eventually possible to add the corresponding option in minitoc.sty,
+     > but it would make it not portable, but you can always send me this new
+     > .mld file.
+
+(27) Use with the abstract package.
+     > If the abstract package (by Peter R. Wilson),
+     > is used with its `addtotoc' option, a ``Abstract'' entry is added
+     > to the table of contents, as a starred chapter if the document class defines
+     > \chapter, else as a starred section. This problem is detected by the
+     > `hints' option and you should add a \mtcaddchapter[] or a \mtcaddsection[]
+     > command after your `abstract' environment.
+(28) Use with the sectsty package.
+     > If the sectsty package (by Rowland McDonnell) is used,
+     > it must be loaded BEFORE the minitoc package.
+(29) Strange alignment in the minitocs: in minitocs, subsections titles are
+     not aligned with sections, as they are in the main table of contents.
+
+     > The entries of a table of contents are formatted via internal commands like
+     > \l@part, \l@chapter, \l@section, etc.
+     >
+     > The ``part'' and ``chapter'' levels (and ``section'' for an article) use
+     > specific commands which are somewhat complex for a more elaborated formatting.
+     > For the ``section'' (in the report and book classes) and lower levels,
+     > these commands are (book class, book.cls) by default:
+     >
+     >    \newcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+     >    \newcommand*\l@subsection{\@dottedtocline{2}{3.8em}{3.2em}}
+     >    \newcommand*\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
+     >    \newcommand*\l@paragraph{\@dottedtocline{4}{10em}{5em}}
+     >    \newcommand*\l@subparagraph{\@dottedtocline{5}{12em}{6em}}
+     >
+     > which will be applied in the main table of contents and in the minitocs. The
+     > arguments of \@dottedtocline are
+     > 1) the logical depth (which will be compared to tocdepth or minitocdepth).
+     > 2) the indentation.
+     > 3) the width reserved for the page number.
+     >
+     > In the standard book, report and article classes, the dimensions
+     > (second and third arguments) are given in ``em'' units, and this unit
+     > depends of the current font. In the main table of contents,
+     > the section and subsection entries are witten in the SAME font, hence
+     > usually the alignment is correct. But in the minitocs, the section entries
+     > are written in a bold font while the subsection entries are written in
+     > a non bold font (see the minitoc documentation), hence one ``em'' has
+     > different sizes in these two fonts and the alignement is changed.
+     >
+     > There are several solutions:
+     > - Redefine the \l@section ... \l@subparagraph commands
+     >   to use font independent units (pt, mm, pc, etc.). This
+     >   redefinition must be performed between \makeatletter
+     >   and \makeatother, because these commands have a @ in
+     >   their names; you must use \renewcommand* to redefine
+     >   these commands.
+     > - Use the tocloft package to change the indentation, with
+     >   font independent units.
+     > - Use the same font for the section and subsection entries
+     >   in the minitocs, using the \mtcsetfont command or
+     >   redefining the \mtcSfont, \mtcSSfont, \mtcSSSfont,
+     >   \mtcPfont and \mtcSPfont commands.
+(30) Useful precautions with starred sectionning commands:
+     >   - The headers are not modified by \part*, \chapter* or \section*;
+     >     it is necessary to use \markboth or \markright to get correct
+     >     page headers for the current and following pages.
+     >   - If you need an entry in the table of contents for a \chapter*
+     >     or a \section* command, you must use \mtcaddchapter[title] or
+     >     \mtcaddsection]title] AFTER the starred sectionning command.
+     >     If you need an entry in the table of contents for a \part* command,
+     >     the page number in the table of contents would be wrong, because
+     >     \part* implies a \clearpage or a \cleardoublepage before the first
+     >     page of the part. Use the sequence
+     >        \cleardoublepage     % \clearpage if openany option.
+     >        \mtcaddpage[title]
+     >        \part*[title]
+(31) Use with packages for captions.
+     > If one of the caption, caption2 (both by Axel Sommerfeldt), ccaption
+     > (by Peter R. Wilson), or mcaption (by Stephan Hennig), is used,
+     > it must be loaded BEFORE the minitoc package, because such packages
+     > alter (redefine) the commands listing figures and tables.
+     > Of course, the hints option detects this problem.
+(32) Bad interaction minitoc/huperref/memoir.
+     > When the minitoc and hyperref packages are used in a document of
+     > class memoir, the chapter header ``Chapter'' does not appear on the
+     > first page of the chapter.
+     > This problem is fixed in version #44 of minitoc.
+(33) Use with the varsects package.
+     > If the varsects package (by Daniel Taupin) is used,
+     > it must be loaded BEFORE the minitoc package.
+(34) Initial font settings
+     > The setting of the fonts in the mini-tables is a rather
+     > complex problem. If we take the parttocs as an example,
+     > there is a \ptcfont font-command which is used for two purposes:
+     > - First, to be used as default value for some other
+     >   font-commands (like \ptcSPfont). As its default value is used
+     >   in the initialization of the minitoc package, the value
+     >   of these other commands is NOT ALTERED if you modify \ptcfont.
+     >   You must modify these commands one at a time.
+     > - Second, it is invoked at the beginning of each parttoc,
+     >   partlof or partlot to set an initial font command.
+     >   Then each entry of the mini-table calls its own font command
+     >   (like \ptcSPfont). Thus, if you modify \ptcfont, you can
+     >   obtain a global effect on the fonts in the parttocs, partlofs,
+     >   and partlots. So you can play with the various parameters of
+     >   the fonts (family, shape, series, size), if you want fancy
+     >   mini-tables; but it is rather difficult.
+     > The same remarks apply to the other mini-tables.
+     >
+     > In the initialization of the minitoc package, we have a sequence
+     > of commands:
+     >    \let\ptcSSfont\ptcfont     % (subsections)
+     >    \let\ptcSSSfont\ptcfont    % (subsubsections)
+     >    \let\ptcPfont\ptcfont      % (paragraphs)
+     >    \let\ptcSPfont\ptcfont     % (subparagraphs)
+     >    \let\plffont\ptcfont       % (figures)
+     >    \let\plfSfont\ptcfont      % (subfigures)
+     >    \let\pltfont\ptcfont       % (tables)
+     >    \let\pltSfont\ptcfont      % (subtables)
+     > to define some default fonts. But this sequence is executed
+     > only once. If you alter \ptcfont, the modification is not
+     > applied to these font commands. The command \ptcfont is invoked
+     > at the beginning of each parttoc. \ptcCfont is invoked for
+     > each chapter entry in a parttoc (\ptcSfont for each section
+     > entry, etc.). So \ptcfont can be used to define some global
+     > characteristics for the fonts in the partocs, while \ptcCfont
+     > (etc.) can be used to customize the fonts for each level of
+     > entries.
+     >
+     > Note that if you say:
+     >    \def\ptcSSfont{\ptcfont}   % (subsections)
+     >    \def\ptcSSSfont{\ptcfont}  % (subsubsections)
+     >    \def\ptcPfont{\ptcfont}    % (paragraphs)
+     >    \def\ptcSPfont{\ptcfont}   % (subparagraphs)
+     >    \def\plffont{\ptcfont}     % (figures)
+     >    \def\plfSfont{\ptcfont}    % (subfigures)
+     >    \def\pltfont{\ptcfont}     % (tables)
+     >    \def\pltSfont{\ptcfont}    % (subtables)
+     > after loading the minitoc package, these font commands will
+     > be ``associated'' to \ptcfont, hence if you modify \ptcfont
+     > (by a \renewcommand or via \mtcsetfont{parttoc}{*}{...}), they
+     > will follow the modification. But if you modify one of these
+     > commands via or \mtcsetfont{parttoc}{subsection}{...} or
+     > \renewcommand (subsection is an example), the association is
+     > broken. But you could be more clever by saying something like
+     > \mtcsetfont{parttoc}{subsection}{\ptcfont\itshape} to preserve
+     > the association and modify only some parameters of a minitoc
+     > font command.
+     >
+     > For levels above subsection (part, chapter and section),
+     > the fonts a more specific in general, but you can, of course,
+     > say something like \def\ptcCfont{\ptcfont} to make a similar
+     > association. You can even make other associations, like this:
+     >  % for high sectionning levels:
+     >      \def\highlevelsfont{\rmfamily\bfseries\normalsize\upshape}
+     >  % for low sectionning levels:
+     >      \def\lowlevelsfont{\rmfamily\mdseries\smallsize\upshape}
+     <  % then for each level:
+     >      \def\ptcCfont{\highlevelsfont}
+     >      \def\ptcSfont{\highlevelsfont}
+     >      \def\ptcSSfont{\lowlevelsfont}
+     >      \def\ptcSSSfont{\lowlevelsfont}
+     >      \def\ptcPfont{\lowlevelsfont\itshape}
+     >      \def\ptcSPfont{\lowlevelsfont\itshape}
+     > Then you can redefine \highlevelsfont or \lowlevelsfont to act
+     > on several fonts in one step, but you must use \renewcommand.
+     > You cannot act on \highlevelsfont or \lowlevelsfont with
+     > \mtcsetfont.
+     > Note that only the fonts for parttocs are used in the examples
+     > above; but, of course, the situation is the same for minitocs
+     > and secttocs. \highlevelsfont and \lowlevelsfont are macro names
+     > that you can choice, they are not part of the minitoc package.
+(35) Use with the KOMAScript classes
+     > If a KOMAScript class, compatible with minitoc (scrbook, scrreprt
+     > or scrartcl), is used, some class options may cause problems with
+     > the minitoc package, because these options add chapter or section
+     > entries in the table of contents. See section ``Special Entries
+     > for TOC, LOF, LOT, Bibliography and Index''. Of course, the hints
+     > option detects this problem.
+(36) Use with the jura class or the alphanum package
+     > The jura class loads the alphanum package, which redefines the
+     > sectionning structure in a non-standard way, after the loading
+     > of the report class. This class and this package are
+     > incompatible with minitoc.
+
+(37) Use of the .mld files with the babel package
+     > If you are using the babel package, you can automatize the loading of
+     > the .mld file by adding some code in the preamble of your document,
+     > like this:
+     >   \AtBeginDocument{%
+     >       \addto\captionsLANGUAGE1{\mtcselectlanguage{LANGUAGE2}}}}
+     > where LANGUAGE1 is the language name for babel and LANGUAGE2 the
+     > language name for minitoc; there are often identical, but there are
+     > exceptions (when you use a locally customized .mld file, by example).
+
+(38) Use with the fncychap package
+     > If the fncychap package (by Ulf A. Lindgren) is used,
+     > it must be loaded BEFORE the minitoc package, because
+     > it alters (redefines) the sectionning commands. Of course,
+     > the hints option detects this problem.
+
+(39) Use with the quotchap package
+     > If the quotchap package (by Karsten Tinnefeld) is used,
+     > it must be loaded BEFORE the minitoc package, because
+     > it alters (redefines) some sectionning commands. Of course,
+     > the hints option detects this problem.
+
+(40) Use with the romannum package
+     > If the romannum package (by Peter R. Wilson) is used,
+     > it must be loaded BEFORE the minitoc package, because
+     > it alters (redefines) the numbering of sectionning commands.
+     > Of course, the hints option detects this problem.
+
+(41) Use with the sfheaders package
+     > If the sfheaders package (by Maurizio Loreti) is used,
+     > it must be loaded BEFORE the minitoc package, because
+     > it alters (redefines) the sectionning commands.
+     > Of course, the hints option detects this problem.
+
+(42) Use with the alnumsec package
+     > If the alnumsec package (by Frank Küster) is used,
+     > it must be loaded BEFORE the minitoc package, because
+     > it alters (redefines) the sectionning commands.
+     > Of course, the hints option detects this problem.
+
+(43) Use with the captcont package
+     > If the captcont package (by Steven Douglas Cochran) is used,
+     > it must be loaded BEFORE the minitoc package, because
+     > it alters (redefines) the caption commands.
+     > Of course, the hints option detects this problem.
+
+(44) Vertical space before and after parttoc, partlof,
+     and partlot titles
+     > These vertical gaps were hard-coded like for the chapter
+     > heads in the book and report document classes.
+     > The values were 50pt and 40pt, but some users want
+     > to adjust them for the titles of the part-level mini-tables.
+     > Since version #45, these gaps are given by \mtcgapbeforeheads
+     > and \mtcgapafterheads, with these defaults values. They apply
+     > globaly to parttocs, partlofs and partlots.
+     > These are commands, NOT dimensions, so they must be modified
+     > via \renewcommand (NOT via \setlength). Look at the mtc-gap.tex
+     > example file.
+
+(45) Vertical spacing before the bottom rule of a minitable
+     > The little spacing between a minitable and its bottom rule
+     > is implemented as a vertical kern that should be sufficient
+     > to allow the descending parts of the letters of the last entry
+     > of the mini-table. The values are empirical and should depend
+     > of the line spacing and of the font size. They are defined by
+     > macros that you can adjust by redefining them via
+     > \verb|\renewcommand|. The default values are given in a table
+     > in the documentation.
+
+(46) Another interaction between the tocloft and minitoc packages
+     I encountered an interaction between tocloft and minitoc.
+     I want to force minitoc to not display the page numbers, but
+     because tocloft, it doesn't (example code in the documentation}.
+     If I comment the line loading the tocloft package, I will get
+     a minitoc without page numbers as i wanted.
+     > When using together tocloft and minitoc, the tocloft package
+     > must be loaded first, and its commands take precedence to format
+     > the entries in the TOC (and in minitocs). To suppress the page
+     > numbers, your should try the \cftpagenumbersoff{XXX} command
+     > (from tocloft}), which is described in the tocloft.pdf
+     > documentation (pages 45-56); XXX is the level of entry (chapter,
+     > sec, subsec, etc.). There are similar remarks about font related
+     > commands.
+     >
+     > The tocloft package is more specialized in that job than
+     > minitoc, so if it is loaded, minitoc uses the locloft tools.
+     > the corrected example (mtc-tlo.tex) is given in the documentation.
+
+(47) Use with the hangcaption package
+     > If the hangcaption package (by David M. Jones) is used,
+     > it must be loaded BEFORE minitoc package, because it alters
+     > (redefines) the sectionning commands. Of course, the hints option
+     > detects this problem.
+
+(48) Use with the flowfram package
+     > The flowfram package has its own system of minitocs, hence
+     > INCOMPATIBLE with minitoc.

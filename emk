@@ -1,0 +1,36 @@
+#! /bin/csh -f
+if ( -f minitoc.dtx ) then
+echo 'Creating the english documentation...'
+if ( -f minitoc.maf ) then
+   \rm minitoc.maf
+endif
+# create the english documentation (PDF): 4 pdflatex runs, with index and biblio
+touch minitoc.ind minitoc.idx
+pdflatex minitoc.dtx
+grep -v  '\\ \[]\|'  minitoc.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+sed -e's/:>/=/' < minitoc.idx > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+bibtex minitoc
+makeindex -s minitoc.ist -o minitoc.ind minitoc.idx
+mv minitoc.ilg minitoc.ilg1
+#
+pdflatex minitoc.dtx
+grep -v  '\\ \[]\|'  minitoc.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+sed -e's/:>/=/' < minitoc.idx > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+makeindex -s minitoc.ist -o minitoc.ind minitoc.idx
+mv minitoc.ilg minitoc.ilg1
+#
+pdflatex minitoc.dtx
+grep -v  '\\ \[]\|'  minitoc.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+sed -e's/:>/=/' < minitoc.idx > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+makeindex -s minitoc.ist -o minitoc.ind minitoc.idx
+mv minitoc.ilg minitoc.ilg1
+#
+pdflatex minitoc.dtx
+grep -v  '\\ \[]\|'  minitoc.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+sed -e's/:>/=/' < minitoc.idx > minitoc.idx1; mv minitoc.idx1 minitoc.idx
+# cleaning
+echo 'Cleaning'
+if ( -f minitoc.maf ) then
+   cat minitoc.maf | xargs -i -t \rm {}
+endif
+endif

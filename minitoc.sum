@@ -1,0 +1,348 @@
+%%%%%%%%%%%%%%%%%% minitoc.sum - summary of user commands
+% \mtcindent   left/right indentation of minitoc (24pt)
+% \mtcsetdepth{mini-table}{depth}
+%              to change the depth of some mini-tables.
+% \mtcsetoffset{mini-table}{offset}
+%              to change the offset of some mini-tables.
+% \mtcsetfont{mini-table}{sectionning-level}{commands}
+%              to redefine a minitoc font command
+% \mtcsetformat{mini-table}{parameter}{value}
+%              to change the layout of some mini-tables
+% \mtcsetpagenumbers{mini-table|*}{on|off}
+%              to activate/inhibit page numbers in some mini-tables.
+% \mtcsetrules{mini-table|*}{on|off}
+%              to activate/inhibit horizontal rules in some mini-tables.
+% \mtcsettitle{mini-table}{title string}
+%              to change the title of some mini-tables
+% \mtcsettitlefont{mini-table}{font commands}
+%              to change the font of the title of some mini-tables
+% \mtcsetfeature{mini-table}{before|after|open|under|pagestyle}{command}
+%              redefines a feature for a mini-table.
+% \mtcpolymtoc{P}{C}{S}{G}
+%              Set up a polymorphic entry for the table of contents
+%              (in Parttoc, Minitoc, Secttoc, Global toc).
+% \mtcpolymlof{P}{C}{S}{G}
+%              Set up a polymorphic entry for the list of figures
+%              (in Partlof, Minilof, Sectlof, Global lof).
+% \mtcpolymlot{P}{C}{S}{G}
+%              Set up a polymorphic entry for the list of tables
+%              (in Partlot, Minilot, Sectlot, Global lot).
+% \ifin|part|toc| true if inside a parttoc,
+%      |part|lof| ................ partlof,
+%      |part|lot| ................ partlot,
+%      |mini|toc| ................ minitoc,
+%      |mini|lof| ................ minilof,
+%      |mini|lof| ................ minilot,
+%      |sect|toc| ................ secttoc,
+%      |sect|lof| ................ sectlof,
+%      |sect|lot| ................ sectlot.
+% \mtcfont     font command for minitoc
+%              (\small\rmfamily\upshape\mdseries)
+% \mtcSfont    font command for minitoc (section entries)
+%              (\small\rmfamily\upshape\bfseries)
+% \mtcSSfont   for subsection entries *
+% \mtcSSSfont  for subsubsection entries *
+% \mtcPfont    for paragraph entries *
+% \mtcSPfont   for subparagraph entries *
+%              * by default, \mtcfont
+% \mlffont     font for minilof
+%              (\small\rmfamily\upshape\mdseries)
+% \mlfSfont    font for minilof (subfigures entries)
+%              (\small\rmfamily\upshape\mdseries)
+% \mltfont     font for minilot
+%              (\small\rmfamily\upshape\mdseries)
+% \mltSfont    font for minilot (subtables entries)
+%              (\small\rmfamily\upshape\mdseries)
+% \mtifont     font for minixxx titles
+%              (\large\rmfamily\upshape\bfseries)
+% \mtctitle    title of minitocs (Contents)
+% \mlftitle    title of minilofs (Figures)
+% \mlftitle    title of minilots (Tables)
+% \minitoc[x]  to put after each \chapter command
+%              for which a minitoc is to be created
+% \minilof[x]  to put after each \chapter command
+%              for which a minilof is to be created
+% \minilot[x]  to put after each \chapter command
+%              for which a minilot is to be created
+%              In the 3 commands above, [x] is an optional
+%              argument to set the position of the
+%              title for only that minitoc/lof/lot. See
+%              below for the possible values of [x].
+% \mtcprepare[x] invokes as many preparation commands
+%              as possible.
+% \dominitoc[x] to put just before the \tableofcontents
+%              command (\dominitoc is mandatory)
+% \dominilof[x] to put just before the \listoffigures
+%              command (\dominilof is mandatory)
+% \dominilot[x] to put just before the \listoftables
+%              command (\dominilot is mandatory)
+%              In the 3 commands above, [x] is an optional
+%              argument to set the default position of
+%              titles. Default: l. l=left, c=center,
+%              r=right, e=empty, n=null (synonym of empty).
+% \faketableofcontents
+%              to replace \tableofcontents if you want
+%              minitocs but no table of contents.
+% \fakelistoffigures
+%              to replace \listoffigures if you want
+%              minilofs but no list of figures.
+% \fakelistoftables
+%              to replace \listoftables if you want
+%              minilots but no list of tables.
+% minitocdepth (\LaTeX counter) depth of the following
+%              minitoc's. Analog to tocdepth. Default: 2.
+%              Has no action on minilofs or minilots.
+% \mtcselectlanguage{language}
+%              loads language.mld to select a language
+%              for minitoc (and siblings) titles.
+% \mtcskip     To make a vertical skip between two
+%              minitoc-like lists.
+% \mtcskipamount
+%              The length of \mtcskip. Default: \bigskipamount
+% mtchideinmaintoc
+%              Environment to hide entries in the main table of contents.
+% mtchideinmainlof
+%              Environment to hide entries in the main list of figures.
+% \mtchideinmainlof \endmtchideinmainlof
+%              Pair of commands to hide entries in the main list of figures.
+% mtchideinmainlot
+%              Environment to hide entries in the main list of tables.
+% \mtchideinmainlot \endmtchideinmainlot
+%              Pair of commands to hide entries in the main list of tables.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for partial tocs/lofs/lots
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \ptcindent   left/right indentation of parttoc (0pt)
+% \ptcfont     font command for parttoc (book, report: \normalsize\mdseries) (section entries)
+%                                       (article: \small\mdseries)
+% \ptcCfont    font command for parttoc (\normalsize\bfseries) (chapter entries)
+% \ptcSfont    font command for parttoc (book,report: \normalsize\mdseries) (section entries)
+%                                       (article: \normalsize\bfseries)
+% \ptcSSfont   for subsection entries *
+% \ptcSSSfont  for subsubsection entries *
+% \ptcPfont    for paragraph entries *
+% \ptcSPfont   for subparagraph entries *
+%              * by default, \ptcfont
+% \plffont     font for partlof (\normalsize\mdseries)
+% \plfSfont    font for partlof (subfigures entries) (\normalsize\mdseries)
+% \pltfont     font for partlot (\normalsize\mdseries)
+% \pltSfont    font for partlot (subtables entries) (\normalsize\mdseries)
+% \ptifont     font for partxxx titles (book, report: \LARGE\bfseries)
+%                                      (article: \Large\bfseries)
+% \ptctitle    title of parttocs (Table of Contents)
+% \plftitle    title of partlofs (List of Figures)
+% \plftitle    title of partlots (List of Tables)
+% \parttoc[x]  to put after each \part command
+%              for which a parttoc is to be created
+% \partlof[x]  to put after each \part command
+%              for which a partlof is to be created
+% \partlot[x]  to put after each \part command
+%              for which a partlot is to be created
+%              In the 3 commands above, [x] is an optional
+%              argument to set the position of the
+%              title for only that parttoc/lof/lot. See
+%              below for the possible values of [x].
+% \doparttoc[x] to put just before the \tableofcontents
+%              command (\doparttoc is mandatory)
+% \dopartlof[x] to put just before the \listoffigures
+%              command (\dopartlof is mandatory)
+% \dopartlot[x] to put just before the \listoftables
+%              command (\dopartlot is mandatory)
+%              In the 3 commands above, [x] is an optional
+%              argument to set the default position of
+%              titles. Default: l. l=left, c=center,
+%              r=right, e=empty, n=null (synonym of empty).
+% parttocdepth (\LaTeX counter) depth of the following
+%              parttoc's. Analog to tocdepth. Default: 2.
+%              Has no action on partlofs or partlots.
+% \beforeparttoc Action before a \parttoc (\cleardoublepage)
+% \beforepartlof Action before a \partlof (\cleardoublepage)
+% \beforepartlot Action before a \partlot (\cleardoublepage)
+% \afterparttoc  Action after a \parttoc (\cleardoublepage)
+% \afterpartlof  Action after a \partlof (\cleardoublepage)
+% \afterpartlot  Action after a \partlot (\cleardoublepage)
+% \openparttoc Action before inserting a parttoc file (\empty)
+% \openpartlof Action before inserting a partlof file (\empty)
+% \openpartlot Action before inserting a partlot file (\empty)
+% \underparttoc  Action after inserting a parttoc file (\empty)
+% \underpartlof  Action after inserting a partlof file (\empty)
+% \underpartlot  Action after inserting a partlot file (\empty)
+% \thispageparttocstyle page style command for a \parttoc
+%                   (\thispagestyle{empty})
+% \thispagepartlofstyle page style command for a \partlof
+%                   (\thispagestyle{empty})
+% \thispagepartlotstyle page style command for a \partlot
+%                   (\thispagestyle{empty})
+%
+% ... and similar commands at chapter and section levels,
+%     if available.
+%
+% \mtcgapbeforeheads Vertical gap before a part-level
+%                    minitable
+% \mtcgapafterheads Vertical gap after a part-level
+%                    minitable
+% \kernafterparttoc Vertical kern between a parttoc and
+%                    its bottom rule
+% \kernafterpartlof Vertical kern between a partlof and
+%                    its bottom rule
+% \kernafterpartlot Vertical kern between a partlot and
+%                    its bottom rule
+% \kernafterminitoc Vertical kern between a minitoc and
+%                    its bottom rule
+% \kernafterminilof Vertical kern between a minilof and
+%                    its bottom rule
+% \kernafterminilot Vertical kern between a minilot and
+%                    its bottom rule
+% \kernaftersecttoc Vertical kern between a secttoc and
+%                    its bottom rule
+% \kernaftersectlof Vertical kern between a sectlof and
+%                    its bottom rule
+% \kernaftersectlot Vertical kern between a sectlot and
+%                    its bottom rule
+% \ptcoffset Horizontal offset for parttocs
+% \plfoffset Horizontal offset for partlofs
+% \pltoffset Horizontal offset for partlots
+% \mtcoffset Horizontal offset for minitocs
+% \mtcoffset Horizontal offset for minitocs
+% \mlfoffset Horizontal offset for minilofs
+% \sltoffset Horizontal offset for sectlots
+% \slfoffset Horizontal offset for sectlofs
+% \sltoffset Horizontal offset for sectlots
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Miscellaneous commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \tightmtctrue
+%              tight minitocs. Minimum space between lines.
+% \tightmtcfalse
+%              loose minitocs.
+% \ktightmtctrue
+%              tight minitocs. Minimum space between lines.
+%              (Koma-script classes).
+% \ktightmtcfalse
+%              loose minitocs.
+%              (Koma-script classes).
+% \undottedmtctrue
+%              no lines of dots in the minitocs.
+% \undottedmtcfalse
+%              lines of dots in the minitocs (from the title
+%              to the page number).
+% \adjustmtc   Adjusts (increments) the minitoc counter mtc.
+% \adjustptc   Adjusts (increments) the parttoc counter ptc.
+% \adjuststc   Adjusts (increments) the secttoc counter stc.
+% \decrementmtc   Adjusts (decrements) the minitoc counter mtc.
+% \decrementptc   Adjusts (decrements) the parttoc counter ptc.
+% \decrementstc   Adjusts (decrements) the secttoc counter stc.
+% \mtcaddchapter[title] Adds the title of a \chapter* in the toc.
+% \mtcaddsection[title] Adds the title of a \section* in the toc.
+% \mtcaddpart[title]    Adds the title of a \part* in the toc.
+% \mtcfixindex[chapter|section|part] Fixes the index entry in the toc.
+% \mtcfixglossary[chapter|section|part] Fixes the glossary entry
+%              in the toc.
+% \mtcfixnomenclature[chapter|section|part] Fixes the nomenclature
+%              entry in the toc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for sectionnal tocs/lofs/lots
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \stcindent   left/right indentation of secttoc (0pt)
+% \stcfont     font command for secttoc
+%              (\small\rmfamily\upshape\mdseries)
+%              (subsection entries)
+% \stcSSfont   font command for secttoc
+%              (\small\rmfamily\upshape\bfseries)
+%              (subsection entries)
+% \stcSSSfont  for subsubsection entries *
+% \stcPfont    for paragraph entries *
+% \stcSPfont   for subparagraph entries *
+%              * by default, \stcfont
+% \slffont     font for sectlof (\normalsize\mdseries)
+% \slfSfont    font for sectlof (subfigures entries) (\normalsize\mdseries)
+% \sltfont     font for sectlot (\normalsize\mdseries)
+% \sltSfont    font for sectlot (subtables entries) (\normalsize\mdseries)
+% \stifont     font for sectxxx titles (\normalsize\bfseries)
+% \stctitle    title of secttocs (Contents)
+% \slftitle    title of sectlofs (Figures)
+% \slftitle    title of sectlots (Tables)
+% \secttoc[x]  to put after each \section command
+%              for which a secttoc is to be created
+% \sectlof[x]  to put after each \section command
+%              for which a sectlof is to be created
+% \sectlot[x]  to put after each \section command
+%              for which a sectlot is to be created
+%              In the 3 commands above, [x] is an optional
+%              argument to set the position of the
+%              title for only that secttoc/lof/lot. See
+%              below for the possible values of [x].
+% \dosecttoc[x] to put just before the \tableofcontents
+%              command (\dosecttoc is mandatory)
+% \dosectlof[x] to put just before the \listoffigures
+%              command (\dosectlof is mandatory)
+% \dosectlot[x] to put just before the \listoftables
+%              command (\dosectlot is mandatory)
+%              In the 3 commands above, [x] is an optional
+%              argument to set the default position of
+%              titles. Default: l. l=left, c=center,
+%              r=right, e=empty, n=null (synonym of empty).
+% secttocdepth (\LaTeX counter) depth of the following
+%              secttoc's. Analog to tocdepth. Default: 2.
+%              Has no action on sectlofs or sectlots.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands to begin with a chapter (part or section)
+% other than number 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \firstpartis{N}    N is the number of the first part
+% \firstchapteris{N} N is the number of the first chapter
+% \firstsectionis{N} N is the number of the first section
+% these commands MUST be inserted BEFORE \dominitoc etc.
+% They do not touch the numbering of parts, chapters or
+% sections.
+% THE \first...is COMMANDS ARE OBSOLETE SINCE VERSION 23
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands to enable/disable horizontal rules
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \ptcrule \noptcrule
+% \mtcrule \nomtcrule
+% \stcrule \nostcrule
+% \plfrule \noplfrule
+% \mlfrule \nomlfrule
+% \slfrule \noslfrule
+% \pltrule \nopltrule
+% \mltrule \nomltrule
+% \sltrule \nosltrule
+% \mtcsetrules{mini-table|*}{on|off}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Keywords for \addcontentsline in a \part*, \chapter*, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% starpart
+% starchapter
+% starsection
+% starsubsection
+% starsubsubsection
+% starparagraph
+% starsubparagraph
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for main starred sectionning commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \starredpart
+% \starredchapter
+% \starredsection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands to have (default) or not have page numbers
+% in minitocs and siblings.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mtcpagenumbers      \nomtcpagenumbers
+% \stcpagenumbers      \nostcpagenumbers
+% \ptcpagenumbers      \noptcpagenumbers
+% \mlfpagenumbers      \nomlfpagenumbers
+% \slfpagenumbers      \noslfpagenumbers
+% \plfpagenumbers      \noplfpagenumbers
+% \mltpagenumbers      \nomltpagenumbers
+% \sltpagenumbers      \nosltpagenumbers
+% \pltpagenumbers      \nopltpagenumbers
+% \mtcsetpagenumbers{mini-table|*}{on|off}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COFFEE stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \coffeefont
+% \addcoffeeline
+% \coffeeline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

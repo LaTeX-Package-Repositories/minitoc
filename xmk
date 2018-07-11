@@ -1,0 +1,33 @@
+#! /bin/csh -f
+#######################
+foreach f ( mtc-add mtc-ads )
+   foreach i ( 1 2 3 )
+   pdflatex $f
+   bibtex $f
+      if ( -e $f.idx ) then
+           makeindex -s gind.ist -o $f.ind $f.idx
+      endif
+      if ( -e $f.glo ) then
+           makeindex -s gglo.ist -o $f.gls $f.glo
+      endif
+   end
+end
+#######################
+foreach i ( 1 2 3 )
+   foreach f ( \
+            mtc-2c mtc-2nd mtc-3co  mtc-amm mtc-apx mtc-art mtc-bk mtc-bo mtc-ch0 mtc-cri \
+            mtc-fko mtc-fo1 mtc-fo2 mtc-gap mtc-hi1 mtc-hi2 mtc-hia mtc-hir mtc-hop mtc-liv mtc-mem mtc-mm1 \
+            mtc-mu mtc-nom mtc-ocf mtc-ofs mtc-sbf mtc-scr mtc-syn mtc-tbi mtc-tlc mtc-tlo mtc-tsf mtc-vti \
+          )
+      pdflatex $f
+   end
+   makeindex -s nomencl.ist -o mtc-nom.nls mtc-nom.nlo
+end
+foreach f ( mtc-add mtc-ads \
+            mtc-2c mtc-2nd mtc-3co  mtc-amm mtc-apx mtc-art mtc-bk mtc-bo mtc-ch0 mtc-cri \
+            mtc-fko mtc-fo1 mtc-fo2 mtc-gap mtc-hi1 mtc-hi2 mtc-hia mtc-hir mtc-hop mtc-liv mtc-mem mtc-mm1 \
+            mtc-mu mtc-nom mtc-ocf mtc-ofs mtc-sbf mtc-scr mtc-syn mtc-tbi mtc-tlc mtc-tlo mtc-tsf mtc-vti \
+             )
+ \rm -f `cat $f.maf` $f.aux $f.log $f.toc $f.bbl $f.blg $f.lof $f.lot $f.ind $f.idx $f.ilg $f.ind $f.maf
+ \rm -f mtc-nom.nls mtc-nom.nlo
+end

@@ -1,0 +1,27 @@
+#! /bin/csh -f
+set w=`whoami`.imk
+set OLD=/tmp/$w/OLD
+if ( -d $OLD ) then
+else
+   mkdir -p $OLD
+endif
+mv minitoc.sty mtcoff.sty mtcmess.sty mtcpatchmem.sty minitoc.ist minitoc-fr.dtx minitoc-fr.ist minitoc.pre franc.sty frbib.sty frnew.sty $OLD
+mv mypatches.sty boldsc.sty $OLD
+mv *.mld $OLD
+mv *.mlo $OLD
+mv *.lan $OLD
+mv mtc-add.bib $OLD
+foreach i ( \
+   mtc-2c mtc-2nd mtc-3co mtc-add mtc-ads mtc-amm mtc-apx mtc-art \
+   mtc-bk mtc-bo mtc-ch0 mtc-cri mtc-fko mtc-fo1 mtc-fo2 mtc-gap \
+   mtc-hi1 mtc-hi2 mtc-hia mtc-hir mtc-hop mtc-liv \
+   mtc-mem mtc-mm1 mtc-mu mtc-nom mtc-ocf mtc-ofs mtc-sbf mtc-scr mtc-syn \
+   mtc-tbi mtc-tlc mtc-tlo mtc-tsf mtc-vti \
+)
+   foreach j ( tex pdf )
+   mv $i.$j $OLD
+   end
+end
+latex minitoc.ins
+cat mtc-add.bib | grep -v '^%%' > addbib;mv addbib mtc-add.bib
+cp minitoc.log minitoc.log1

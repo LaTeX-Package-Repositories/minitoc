@@ -1,0 +1,35 @@
+#! /bin/csh -f
+if ( -f minitoc-fr.dtx ) then
+echo 'Creating the french documentation...'
+if ( -f minitoc-fr.maf ) then
+   \rm minitoc-fr.maf
+endif
+# create the french documentation (PDF): 4 pdflatex runs, with index and biblio
+touch minitoc-fr.idx minitoc-fr.ind
+pdflatex minitoc-fr.dtx
+grep -v  '\\ \[]\|'  minitoc-fr.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+sed -e's/:>/=/' < minitoc-fr.idx > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+bibtex minitoc-fr
+makeindex -s minitoc-fr.ist -o minitoc-fr.ind minitoc-fr.idx
+mv minitoc-fr.ilg minitoc-fr.ilg1
+#
+pdflatex minitoc-fr.dtx
+grep -v  '\\ \[]\|'  minitoc-fr.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+sed -e's/:>/=/' < minitoc-fr.idx > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+makeindex -s minitoc-fr.ist -o minitoc-fr.ind minitoc-fr.idx
+mv minitoc-fr.ilg minitoc-fr.ilg1
+#
+pdflatex minitoc-fr.dtx
+grep -v  '\\ \[]\|'  minitoc-fr.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+sed -e's/:>/=/' < minitoc-fr.idx > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+makeindex -s minitoc-fr.ist -o minitoc-fr.ind minitoc-fr.idx
+mv minitoc-fr.ilg minitoc-fr.ilg1
+#
+pdflatex minitoc-fr.dtx
+grep -v  '\\ \[]\|'  minitoc-fr.idx | grep -v '|main}{1}$' | grep -v '\! =\\verb\!\*+\!\\\! +' > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+sed -e's/:>/=/' < minitoc-fr.idx > minitoc-fr.idx1; mv minitoc-fr.idx1 minitoc-fr.idx
+# Cleaning
+if ( -f minitoc-fr.maf ) then
+   cat minitoc-fr.maf | xargs -i -t \rm {}
+endif
+endif

@@ -1,0 +1,18 @@
+First and foremost: this package is looking for a maintainer.
+The original author, Jean-Pierre F. Drucbert,
+passed away in 2009.
+
+Jean-Pierre's todo list:
+Problem FAQ 34: should this strategy for fonts be implemented?
+Problem of allowing secttocs for the book and report classes:
+   needs a lot of rewrite. Is it important? Delayed.
+Mini-table entries in ``paragraph'' format:
+   not a minitoc problem, but a problem of the \l@... commands.
+Problem of ``numwidth'' (width of the section number)
+   in \mtcsetformat. Use the tocloft package.
+Compatibility with the fltpage package.
+Review the formatting of the mini-tables to use
+   `booktabs' rules and color. Complex.
+Dynamic depth in mini-tables (like mtchideinmain...
+   but for the mini-tables). No idea how to do that strange thing...
+Markboth in the mini-tables: yes or not? uppercase or not?
