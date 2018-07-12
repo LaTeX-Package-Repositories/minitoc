@@ -5,9 +5,10 @@
   cd work
   rm -rf /tmp/*.?mk  # remove last run
   bash pmk.sh 2>&1 | tee pmk.log   # look at log file
+  cp minitoc.pdf ..
   cd ..              # back to source dir
   cd ..
   cp /tmp/*.tmk/tds/minitoc.tds.zip . # to parent
-  zip minitoc-upload.zip minitoc.tds.zip minitoc -x minitoc/.git minitoc/work 
-  cp minitoc-upload.zip minitoc
+  zip minitoc-upload.zip minitoc.tds.zip minitoc/* -x minitoc/{.git,mkctan,work/,build.lua,ctan-post.lua,minitoc.zip,minitoc.tds.zip,tmk.sh,pmk.sh}
+  mv minitoc-upload.zip minitoc
   
