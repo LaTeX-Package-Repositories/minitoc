@@ -246,8 +246,8 @@ xalx.mld \
 xalx2.mld \
 xalx3.mld
 do
-   echo cp i $TDS/tex/latex/minitoc
-   echo chmod 744 $TDS/tex/latex/minitoc/i
+   cp $i $TDS/tex/latex/minitoc
+   chmod 744 $TDS/tex/latex/minitoc/$i
 done
 #
 echo "DOCUMENTATION files"
