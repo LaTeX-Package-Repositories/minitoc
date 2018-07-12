@@ -1,9 +1,13 @@
+#!/usr/bin/bash
+
   rm -rf work; mkdir work
   cp * work  # copy source files to working directory
   cd work
   rm -rf /tmp/*.?mk  # remove last run
-  bash pmk.sh >&out   # look at out file
+  bash pmk.sh 2>&1 | tee pmk.log   # look at log file
   cd ..              # back to source dir
-  rm -rf work
-  cp /tmp/*.tmk/tds/minitoc.tds.zip .. # to parent
-  zip minitoc-upload.zip minitoc.tds.zip minitoc  # the way ctan wants it
+  cd ..
+  cp /tmp/*.tmk/tds/minitoc.tds.zip . # to parent
+  zip minitoc-upload.zip minitoc.tds.zip minitoc -x minitoc/.git minitoc/work 
+  cp minitoc-upload.zip minitoc
+  
