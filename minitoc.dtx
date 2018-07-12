@@ -12382,7 +12382,7 @@ Afterthoughts appendix
 bla bla bla bla bla bla bla bla bla bla bla
 \subparagraph{WWWW1} \lipsum[55]
 \subsection{W2} \lipsum[56]
-\chapter*{}
+% no chapter in article class \chapter*{}
 \part{Appendices}
 \parttoc \mtcskip
 \partlof \mtcskip
@@ -39874,7 +39874,7 @@ have centered labels.
 %    \begin{macrocode}
 \if@mtc@setdepth@
    \def\mtc@tmpde@name{\mtc@mtade@abbrev depth}
-   \expandafter\noexpand\@ifundefined{c@\mtc@mtade@abbrev depth}%
+   \@ifundefined{c@\mtc@mtade@abbrev depth}%
       {\mtcPackageError[E0008]{minitoc}%
        {\string\mtcsetdepth \space attempts to use
         \MessageBreak
@@ -39996,7 +39996,7 @@ have centered labels.
 %    \begin{macrocode}
 \if@mtc@setoffset@
    \def\mtc@tmpof@name{\mtc@mtaof@abbrev offset.}
-   \expandafter\noexpand\@ifundefined{\mtc@mtaof@abbrev offset}%
+   \@ifundefined{\mtc@mtaof@abbrev offset}%
       {\mtcPackageError[E0041]{minitoc}%
        {\string\mtcsetoffset \space attempts to use
         \MessageBreak
