@@ -1,7 +1,8 @@
 require("ctan-post")
 
 -- curl is default
--- ctan_post_command="curl" 
+-- ctan_post_command="curl"
+--curl_debug=true
 
 ctan={}
 
@@ -9,7 +10,7 @@ ctan.pkg="minitoc"
 
 ctan.version=[[2018/07/12]] --OK
 
-ctan.summary=[[Produce a table of contents for each chapter, part or section]]
+ctan.summary=[[Produce a table of contents for each chapter part or section]]
 
 ctan.author=[[Jean-Pierre Drucbert and GitHub minitoc organisation]]
 
@@ -45,6 +46,12 @@ which currently is just David Carlisle but volunteers welcome...
 
 ctan.file="minitoc-upload.zip"
 
-ctan_upload(ctan,false)
+local submit=input_single_line_field("submit to ctan? yes/no [no]")
+
+if(submit=="yes" or submit=="true") then
+  ctan_upload(ctan,true)
+else
+  ctan_upload(ctan,false)
+end
 
 
