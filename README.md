@@ -33,7 +33,7 @@ The latest version of this license is in
 and version 1.3 or later is part of all distributions of LaTeX
 version 2003/12/01 or later.
 
-This work has the LPPL maintenance status "unmaintained".
+This work has the LPPL maintenance status "maintained".
 
 The list of all files belonging to the distribution is
 given in the file `minitoc.l'. 
