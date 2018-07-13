@@ -1,9 +1,11 @@
-README file for the minitoc package.
+# README file for the minitoc package.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-This package is looking for a maintainer.
-The original author, Jean-Pierre F. Drucbert,
-passed away in 2009.
+
+> This package is looking for a maintainer.
+> The original author, Jean-Pierre F. Drucbert,
+> passed away in 2009.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The minitoc package is used to add mini-tables-of-contents (minitocs)
@@ -20,6 +22,7 @@ installation is described in the INSTALL file and the minitoc.dtx file,
 as a chapter of the documentation.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 This work is the minitoc package.
 
 This work may be distributed and/or modified under the
