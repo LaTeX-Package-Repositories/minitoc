@@ -10,5 +10,4 @@
   cd ..
   cp /tmp/*.tmk/tds/minitoc.tds.zip . # to parent
   zip minitoc-upload.zip minitoc.tds.zip minitoc/* -x minitoc/{.git,mkctan,work/,build.lua,ctan-post.lua,minitoc.zip,minitoc.tds.zip,tmk.sh,pmk.sh}
-  mv minitoc-upload.zip minitoc
-  
+  mv minitoc-upload.zip minitoc.tds.zip minitoc
