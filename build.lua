@@ -2,13 +2,13 @@ require("ctan-post")
 
 -- curl is default
 -- ctan_post_command="curl"
---curl_debug=true
+-- curl_debug=true
 
 ctan={}
 
 ctan.pkg="minitoc"
 
-ctan.version=[[2018/07/12]] --OK
+ctan.version=[[62]] --OK
 
 ctan.summary=[[Produce a table of contents for each chapter part or section]]
 
