@@ -1,7 +1,7 @@
 minitoc.l
 minitoc.sum
 minitoc.bug
-README
+README.md
 INSTALL
 cmk
 emk
